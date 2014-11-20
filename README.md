@@ -1,6 +1,6 @@
-# Ember-cli-bootstrap-datepicker
+# Ember CLI datepicker based on bootstrap-datepicker
 
-This README outlines the details of collaborating on this Ember addon.
+The addon can be used in Ember CLI applications. It's based on [bootstrap-datepicker](https://github.com/eternicode/bootstrap-datepicker).
 
 ## Installation
 
