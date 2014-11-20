@@ -31,7 +31,10 @@
     "glob": "^4.0.5"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "bootstrap-datepicker",
+    "bootstrap",
+    "datepicker"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
