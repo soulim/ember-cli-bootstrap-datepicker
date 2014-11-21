@@ -4,9 +4,10 @@ export default Ember.Component.extend({
   tagName: 'input',
 
   setupBootstrapDatepicker: function() {
-    var self = this;
+    var self = this,
+        element = this.$();
 
-    this.$().
+    element.
       datepicker({
         autoclose: this.get('autoclose') || true,
         format: this.get('format') || 'dd.mm.yyyy',
@@ -14,12 +15,15 @@ export default Ember.Component.extend({
         todayHighlight: this.get('todayHighlight') || false,
         todayBtn: this.get('todayBtn') || false
       }).
-      datepicker('setDate', new Date(this.get('value'))).
       on('changeDate', function(event) {
         Ember.run(function() {
           self.didSelectDate(event);
         });
       });
+
+    if (value) {
+      element.datepicker('setDate', new Date(this.get('value')));
+    };
   }.on('didInsertElement'),
 
   teardownBootstrapDatepicker: function() {
