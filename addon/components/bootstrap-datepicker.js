@@ -14,7 +14,8 @@ export default Ember.Component.extend({
         format: this.get('format') || 'dd.mm.yyyy',
         weekStart: this.get('weekStart') || 1,
         todayHighlight: this.get('todayHighlight') || false,
-        todayBtn: this.get('todayBtn') || false
+        todayBtn: this.get('todayBtn') || false,
+        language: this.get('language') || 'en'
       }).
       on('changeDate', function(event) {
         Ember.run(function() {

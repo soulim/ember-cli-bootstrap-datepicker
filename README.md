@@ -21,9 +21,10 @@ The component supports many options of the bootstrap-datepicker library:
 
 * **autoclose**, default value `true`
 * **format**, default value `dd.mm.yyyy`
-* **weekStart**, default value 1 (Monday)
-* **todayHighlight**, default value `false`
+* **language**, default value `en`
 * **todayBtn**, default value `false`
+* **todayHighlight**, default value `false`
+* **weekStart**, default value 1 (Monday)
 
 Let me show you how to use all these options.
 
@@ -36,19 +37,21 @@ Autoclose:
 Format:
 
 ```handlebars
-{{bootstrap-datepicker value=expiresAt format='dd/mm/yy'}}
+{{bootstrap-datepicker value=expiresAt format="dd/mm/yy"}}
 ```
 
-weekStart:
+language:
 
-```handlebars
-{{bootstrap-datepicker value=expiresAt weekStart=0}}
+Default locale is `en`. When you need another language, you should import a locale file, e.g.
+
+```javascript
+// Brocfile.js
+
+app.import('bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.de.js');
 ```
 
-todayHighlight:
-
 ```handlebars
-{{bootstrap-datepicker value=expiresAt todayHighlight=true}}
+{{bootstrap-datepicker value=expiresAt language="de"}}
 ```
 
 todayBtn:
@@ -57,10 +60,22 @@ todayBtn:
 {{bootstrap-datepicker value=expiresAt todayBtn=true}}
 ```
 
+todayHighlight:
+
+```handlebars
+{{bootstrap-datepicker value=expiresAt todayHighlight=true}}
+```
+
+weekStart:
+
+```handlebars
+{{bootstrap-datepicker value=expiresAt weekStart=0}}
+```
+
 All options at once:
 
 ```handlebars
-{{bootstrap-datepicker value=expiresAt autoclose=false format='dd/mm/yy' weekStart=0 todayHighlight=true todayBtn=true}}
+{{bootstrap-datepicker value=expiresAt autoclose=false format="dd/mm/yy" language="de" todayBtn=true todayHighlight=true weekStart=0}}
 ```
 
 ## Contributing
