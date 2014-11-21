@@ -5,7 +5,8 @@ export default Ember.Component.extend({
 
   setupBootstrapDatepicker: function() {
     var self = this,
-        element = this.$();
+        element = this.$(),
+        value = this.get('value');
 
     element.
       datepicker({
@@ -22,7 +23,7 @@ export default Ember.Component.extend({
       });
 
     if (value) {
-      element.datepicker('setDate', new Date(this.get('value')));
+      element.datepicker('setDate', new Date(value));
     };
   }.on('didInsertElement'),
 
