@@ -7,7 +7,7 @@ The input component is based on [bootstrap-datepicker library](https://github.co
 ## Installation
 
 ```bash
-npm install --save-dev npm install --save-dev ember-cli-bootstrap-datepicker
+npm install --save-dev ember-cli-bootstrap-datepicker
 ember generate bootstrap-datepicker
 ```
 
