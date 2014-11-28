@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
-  tagName: 'input',
-
+export default Ember.TextField.extend({
   setupBootstrapDatepicker: function() {
     var self = this,
         element = this.$(),
