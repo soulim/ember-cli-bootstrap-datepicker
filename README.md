@@ -1,10 +1,8 @@
 # Ember CLI datepicker
 
-The addon provides you a `bootstrap-datapicker` input component. It can be used in Ember CLI applications.
+The addon provides you a `bootstrap-datepicker` input component. It can be used in Ember CLI applications.
 
-The input component is based on [bootstrap-datepicker library](https://github.com/eternicode/bootstrap-datepicker).
-
-The datepicker input field extends [`Ember.TextField`](http://emberjs.com/api/classes/Ember.TextField.html). That means you have all attribute bindings available on `Ember.TextField`.
+The input component is based on [bootstrap-datepicker library](https://github.com/eternicode/bootstrap-datepicker). The datepicker input field extends [`Ember.TextField`](http://emberjs.com/api/classes/Ember.TextField.html). That means you have all attribute bindings available on `Ember.TextField`.
 
 ## Installation
 
