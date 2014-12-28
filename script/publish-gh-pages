@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+# Publish GitHub Pages
+#
+# Usage: script/publish-gh-pages
+
+set -o errexit
+
+echo 'Enter GitHub Pages commit message:'
+read message
+
+branch=$(git symbolic-ref --short -q HEAD)
+
+ember build --environment=production
+
+if git branch --list | grep --no-messages --quiet 'gh-pages'
+then
+  git checkout gh-pages
+else
+  git checkout --orphan gh-pages
+  git rm -rf .
+fi
+
+if [ ! -f .gitignore ]
+then
+  echo '/bower_components' > .gitignore
+  echo '/node_modules' >> .gitignore
+fi
+
+rm -rf assets crossdomain.xml index.html robots.txt tmp
+mv dist/* .
+rm -rf dist
+
+git add .
+git commit --all --message="$message"
+git push origin gh-pages
+
+git checkout "$branch"

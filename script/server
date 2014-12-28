@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Run application server
+#
+# Usage: script/server
+
+set -o errexit
+
+ember server

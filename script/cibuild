@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Run tests on the continuous integration server
+#
+# Usage: script/cibuild
+
+set -o errexit
+
+ember test

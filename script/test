@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Run the local test suite
+#
+# Usage: script/test
+
+set -o errexit
+
+ember test --server

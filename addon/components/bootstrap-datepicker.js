@@ -1,6 +1,46 @@
 import Ember from 'ember';
 
-export default Ember.TextField.extend({
+export default Ember.Component.extend({
+  instrumentDisplay: '{{input type="text"}}',
+
+  classNames: ['ember-text-field'],
+
+  tagName: 'input',
+
+  attributeBindings: [
+    'accesskey',
+    'autocomplete',
+    'autofocus',
+    'contenteditable',
+    'contextmenu',
+    'dir',
+    'disabled',
+    'draggable',
+    'dropzone',
+    'form',
+    'hidden',
+    'id',
+    'lang',
+    'list',
+    'max',
+    'min',
+    'name',
+    'placeholder',
+    'readonly',
+    'required',
+    'spellcheck',
+    'step',
+    'style',
+    'tabindex',
+    'title',
+    'translate',
+    'type'
+  ],
+
+  type: 'text',
+
+  value: null,
+
   setupBootstrapDatepicker: function() {
     var self = this,
         element = this.$(),
@@ -8,12 +48,22 @@ export default Ember.TextField.extend({
 
     element.
       datepicker({
-        autoclose: this.get('autoclose') || true,
-        format: this.get('format') || 'dd.mm.yyyy',
-        weekStart: this.get('weekStart') || 1,
-        todayHighlight: this.get('todayHighlight') || false,
-        todayBtn: this.get('todayBtn') || false,
-        language: this.get('language') || 'en'
+        autoclose: this.get('autoclose'),
+        calendarWeeks: this.get('calendarWeeks'),
+        clearBtn: this.get('clearBtn'),
+        daysOfWeekDisabled: this.get('daysOfWeekDisabled'),
+        endDate: this.get('endDate'),
+        forceParse: this.get('forceParse'),
+        format: this.get('format'),
+        keyboardNavigation: this.get('keyboardNavigation'),
+        language: this.get('language'),
+        minViewMode: this.get('minViewMode'),
+        orientation: this.get('orientation'),
+        startDate: this.get('startDate'),
+        startView: this.get('startView'),
+        todayBtn: this.get('todayBtn'),
+        todayHighlight: this.get('todayHighlight'),
+        weekStart: this.get('weekStart')
       }).
       on('changeDate', function(event) {
         Ember.run(function() {
@@ -22,15 +72,15 @@ export default Ember.TextField.extend({
       });
 
     if (value) {
-      element.datepicker('setDate', new Date(value));
-    };
+      element.datepicker('update', new Date(value));
+    }
   }.on('didInsertElement'),
 
   teardownBootstrapDatepicker: function() {
-    // no-op
+    this.$().datepicker('remove');
   }.on('willDestroyElement'),
 
-  didSelectDate: function(event) {
+  didSelectDate: function() {
     var date = this.$().datepicker('getUTCDate');
     this.set('value', date.toISOString());
   }

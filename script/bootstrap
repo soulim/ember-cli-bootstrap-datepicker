@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# Install all dependencies
+#
+# Usage: script/bootstrap
+
+set -o errexit
+
+npm install -g bower
+npm install
+bower install
