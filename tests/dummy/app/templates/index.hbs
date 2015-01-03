@@ -18,7 +18,6 @@
 
   <p>If you are using Ember CLI 0.1.5 and higher, just run within your project directory:</p>
 
-
   <pre>ember install:addon ember-cli-bootstrap-datepicker</pre>
 
   <p>When your Ember CLI version is below 0.1.5, please run within your project directory:</p>
@@ -29,16 +28,33 @@ ember generate bootstrap-datepicker</pre>
   <h2>Basic example</h2>
   <hr>
 
+  <p>Please note, you should use <code>value</code> attribute to provide a date. All examples on this page doesn't use this attribute because they don't work with real data, it's just a demo.</p>
+
   <div class="panel panel-default">
     <div class="panel-heading">
+      <pre><code>&#123;&#123;bootstrap-datepicker placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
+    </div>
+    <div class="panel-body">
+      <p>It's just a basic example. The component supports many options which you could use to customize the datepicker.</p>
+    </div>
+    <div class="panel-footer">
       {{bootstrap-datepicker placeholder="Click to play"
                              class="form-control"}}
     </div>
+  </div>
+
+  <h2>Inline or embedded example</h2>
+  <hr>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <pre><code>&#123;&#123;bootstrap-datepicker-inline&#125;&#125;</code></pre>
+    </div>
     <div class="panel-body">
-      <p>It's just a basic example. The component supports many options which you could use to customize the datepicker. Please, find all of them below.</p>
+      <p>An inline version supports the same options as a pop-up one. Please, find all of them below.</p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker-inline}}
     </div>
   </div>
 
@@ -48,9 +64,7 @@ ember generate bootstrap-datepicker</pre>
   <h3>autoclose</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker autoclose=true
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker autoclose=true placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -59,16 +73,16 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker autoclose=true class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker autoclose=true
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>calendarWeeks</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker calendarWeeks=true
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker calendarWeeks=true placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -77,16 +91,16 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker calendarWeeks=true class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker calendarWeeks=true
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>clearBtn</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker clearBtn=true
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker clearBtn=true placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -95,16 +109,16 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker clearBtn=true class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker clearBtn=true
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>daysOfWeekDisabled</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker daysOfWeekDisabled="1,2"
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker daysOfWeekDisabled="1,2" placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -114,16 +128,16 @@ ember generate bootstrap-datepicker</pre>
       <p>Possible values are 0 (Sunday) to 6 (Saturday).</p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker daysOfWeekDisabled="1,2" class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker daysOfWeekDisabled="1,2"
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>endDate</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker endDate="01/01/2018"
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker endDate="01/01/2018" placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -132,16 +146,16 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker endDate="01/01/2018" class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker endDate="01/01/2018"
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>forceParse</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker forceParse=false
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker forceParse=false placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -150,16 +164,16 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker forceParse=false class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker forceParse=false
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>format</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker format="dd MM, yyyy"
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker format="dd MM, yyyy" placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -169,16 +183,16 @@ ember generate bootstrap-datepicker</pre>
       <p>You could read more about a format string <a href="http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format">here</a>.</p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker format="dd MM, yyyy" class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker format="dd MM, yyyy"
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>keyboardNavigation</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker keyboardNavigation=false
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker keyboardNavigation=false placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -187,16 +201,16 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker keyboardNavigation=false class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker keyboardNavigation=false
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>language</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker language="de"
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker language="de" placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -209,16 +223,16 @@ ember generate bootstrap-datepicker</pre>
       <p>Months are translated in German, date format is changed, and weeks start from Monday now. So it's pretty convenient :)</p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker language="de" class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker language="de"
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>minViewMode</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker minViewMode="months"
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker minViewMode="months" placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -228,16 +242,16 @@ ember generate bootstrap-datepicker</pre>
       <p>Please, read more about possible values <a href="http://bootstrap-datepicker.readthedocs.org/en/release/options.html#minviewmode">here</a>.</p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker minViewMode="months" class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker minViewMode="months"
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>orientation</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker orientation="right"
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker orientation="right" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -251,16 +265,16 @@ ember generate bootstrap-datepicker</pre>
 
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker orientation="right" class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker orientation="right"
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>startDate</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker startDate="01/01/2014"
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker startDate="01/01/2014" placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -269,16 +283,16 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker startDate="01/01/2014" class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker startDate="01/01/2014"
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>startView</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker startView="decade"
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker startView="decade" placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -288,16 +302,16 @@ ember generate bootstrap-datepicker</pre>
       <p>Please, read more about possible values <a href="http://bootstrap-datepicker.readthedocs.org/en/release/options.html#startview">here</a>.</p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker startView="decade" class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker startView="decade"
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>todayBtn</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker todayBtn=true
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker todayBtn=true placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -306,16 +320,16 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker todayBtn=true class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker todayBtn=true
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>todayHighlight</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker todayHighlight=true
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker todayHighlight=true placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -324,16 +338,16 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker todayHighlight=true class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker todayHighlight=true
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 
   <h3>weekStart</h3>
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{bootstrap-datepicker weekStart=1
-                             placeholder="Click to play"
-                             class="form-control"}}
+      <pre><code>&#123;&#123;bootstrap-datepicker weekStart=1 placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
     </div>
     <div class="panel-body">
       <p>
@@ -342,7 +356,9 @@ ember generate bootstrap-datepicker</pre>
       </p>
     </div>
     <div class="panel-footer">
-      <pre><code>&#123;&#123;bootstrap-datepicker weekStart=1 class="form-control"&#125;&#125;</code></pre>
+      {{bootstrap-datepicker weekStart=1
+                             placeholder="Click to play"
+                             class="form-control"}}
     </div>
   </div>
 

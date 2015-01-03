@@ -1,10 +1,10 @@
-# Ember CLI datepicker
+# Ember CLI datepicker add-on
 
 [![Build Status](https://travis-ci.org/soulim/ember-cli-bootstrap-datepicker.svg?branch=master&style=flat)](https://travis-ci.org/soulim/ember-cli-bootstrap-datepicker)
 
-The addon provides you a `bootstrap-datepicker` input component. It can be used in Ember CLI applications.
+The add-on provides you a date input component based on amazing bootstrap-datepicker library. It supports popup and inline mode, and can be used in Ember CLI applications.
 
-The input component is based on [bootstrap-datepicker library](https://github.com/eternicode/bootstrap-datepicker).
+[Online demo](http://sul.im/ember-cli-bootstrap-datepicker)
 
 ## Installation
 
@@ -27,6 +27,12 @@ Basic example:
 
 ```handlebars
 {{bootstrap-datepicker value=expiresAt}}
+```
+
+Use separate component for inline mode:
+
+```handlebars
+{{bootstrap-datepicker-inline value=expiresAt}}
 ```
 
 The component supports many options of the bootstrap-datepicker library. Let me show you how to use them :sparkles:
@@ -192,6 +198,11 @@ Default: `0` (Sunday)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## Credits
+
+The add-on is based on [bootstrap-datepicker](https://github.com/eternicode/bootstrap-datepicker).
+
 
 ## License
 
