@@ -248,6 +248,46 @@ ember generate bootstrap-datepicker</pre>
     </div>
   </div>
 
+  <h3>multidate</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <pre><code>&#123;&#123;bootstrap-datepicker multidate=true placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
+    </div>
+    <div class="panel-body">
+      <p>
+        Type: <code>Boolean</code> or <code>Number</code><br>
+        Default: <code>false</code></code>
+      </p>
+      <p>If multidate is <code>true</code>, <code>value</code> is an array.</p>
+      <p>Please, read more about possible values <a href="http://bootstrap-datepicker.readthedocs.org/en/release/options.html#multidate">here</a>.</p>
+    </div>
+    <div class="panel-footer">
+      {{bootstrap-datepicker multidate=true
+                             placeholder="Click to play"
+                             class="form-control"}}
+    </div>
+  </div>
+
+  <h3>multidateSeparator</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <pre><code>&#123;&#123;bootstrap-datepicker multidate=true multidateSeparator=";" placeholder="Click to play" class="form-control"&#125;&#125;</code></pre>
+    </div>
+    <div class="panel-body">
+      <p>
+        Type: <code>String</code><br>
+        Default: <code>,</code></code>
+      </p>
+      <p>Please, read more about possible values <a href="https://bootstrap-datepicker.readthedocs.org/en/release/options.html#multidateseparator">here</a>.</p>
+    </div>
+    <div class="panel-footer">
+      {{bootstrap-datepicker multidate=true
+                             multidateSeparator=";"
+                             placeholder="Click to play"
+                             class="form-control"}}
+    </div>
+  </div>
+
   <h3>orientation</h3>
   <div class="panel panel-default">
     <div class="panel-heading">

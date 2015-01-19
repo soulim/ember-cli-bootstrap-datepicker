@@ -20,6 +20,8 @@ export default Ember.Mixin.create({
         keyboardNavigation: this.get('keyboardNavigation'),
         language: this.get('language'),
         minViewMode: this.get('minViewMode'),
+        multidate: this.get('multidate'),
+        multidateSeparator: this.get('multidateSeparator'),
         orientation: this.get('orientation'),
         startDate: this.get('startDate'),
         startView: this.get('startView'),
@@ -46,7 +48,15 @@ export default Ember.Mixin.create({
     var isoDate = null;
 
     if (event.date) {
-      isoDate = this.$().datepicker('getUTCDate').toISOString();
+      if (this.get('multidate')) {
+         // set value to array if multidate
+         isoDate = this.$().datepicker('getUTCDates').map(function(date) {
+           return date.toISOString();
+         });
+      }
+      else {
+         isoDate = this.$().datepicker('getUTCDate').toISOString();
+      }
     }
 
     this.set('value', isoDate);
