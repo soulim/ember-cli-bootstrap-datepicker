@@ -36,7 +36,22 @@ export default Ember.Mixin.create({
       });
 
     if (value) {
-      element.datepicker('update', new Date(value));
+      if (this.get('multidate')) {
+        // split datesIsoString by multidate separator
+        var multidateSeparator = this.get('multidateSeparator') || ',';
+        var dateIsoStrings = value.split( multidateSeparator );
+        // generate array of date objecs
+        var dateObjects = dateIsoStrings.map( function(dateIsoString) {
+          return new Date(dateIsoString);
+        });
+        // set datepickers internal date
+        element.datepicker('setDates', dateObjects);
+        // update datepicker view
+        element.datepicker('update');
+      }
+      else {
+        element.datepicker('update', new Date(value));
+      }
     }
   }.on('didInsertElement'),
 
