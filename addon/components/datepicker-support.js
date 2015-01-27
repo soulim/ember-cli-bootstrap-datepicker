@@ -20,6 +20,8 @@ export default Ember.Mixin.create({
         keyboardNavigation: this.get('keyboardNavigation'),
         language: this.get('language'),
         minViewMode: this.get('minViewMode'),
+        multidate: this.get('multidate'),
+        multidateSeparator: this.get('multidateSeparator'),
         orientation: this.get('orientation'),
         startDate: this.get('startDate'),
         startView: this.get('startView'),
@@ -34,7 +36,22 @@ export default Ember.Mixin.create({
       });
 
     if (value) {
-      element.datepicker('update', new Date(value));
+      if (this.get('multidate')) {
+        // split datesIsoString by multidate separator
+        var multidateSeparator = this.get('multidateSeparator') || ',';
+        var dateIsoStrings = value.split( multidateSeparator );
+        // generate array of date objecs
+        var dateObjects = dateIsoStrings.map( function(dateIsoString) {
+          return new Date(dateIsoString);
+        });
+        // set datepickers internal date
+        element.datepicker('setDates', dateObjects);
+        // update datepicker view
+        element.datepicker('update');
+      }
+      else {
+        element.datepicker('update', new Date(value));
+      }
     }
   }.on('didInsertElement'),
 
@@ -46,7 +63,15 @@ export default Ember.Mixin.create({
     var isoDate = null;
 
     if (event.date) {
-      isoDate = this.$().datepicker('getUTCDate').toISOString();
+      if (this.get('multidate')) {
+         // set value to array if multidate
+         isoDate = this.$().datepicker('getUTCDates').map(function(date) {
+           return date.toISOString();
+         });
+      }
+      else {
+         isoDate = this.$().datepicker('getUTCDate').toISOString();
+      }
     }
 
     this.set('value', isoDate);
