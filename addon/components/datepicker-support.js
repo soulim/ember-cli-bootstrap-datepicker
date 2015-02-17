@@ -6,7 +6,8 @@ export default Ember.Mixin.create({
   setupBootstrapDatepicker: function() {
     var self = this,
         element = this.$(),
-        value = this.get('value');
+        value = this.get('value'),
+        dates = [];
 
     element.
       datepicker({
@@ -39,19 +40,18 @@ export default Ember.Mixin.create({
       if (this.get('multidate')) {
         // split datesIsoString by multidate separator
         var multidateSeparator = this.get('multidateSeparator') || ',';
-        var dateIsoStrings = value.split( multidateSeparator );
+        var isoDates = value.split(multidateSeparator);
+
         // generate array of date objecs
-        var dateObjects = dateIsoStrings.map( function(dateIsoString) {
-          return new Date(dateIsoString);
+        dates = isoDates.map(function(date) {
+          return self._resetTime(new Date(date));
         });
-        // set datepickers internal date
-        element.datepicker('setDates', dateObjects);
-        // update datepicker view
-        element.datepicker('update');
       }
       else {
-        element.datepicker('update', new Date(value));
+        dates = [self._resetTime(new Date(value))];
       }
+      element.datepicker.
+              apply(element, Array.prototype.concat.call(['update'], dates));
     }
   }.on('didInsertElement'),
 
@@ -75,5 +75,34 @@ export default Ember.Mixin.create({
     }
 
     this.set('value', isoDate);
+  },
+
+  didChangeValue: function() {
+    var self = this,
+        element = this.$(),
+        value = this.get('value'),
+        dates = [];
+
+    if (Ember.isArray(value)) {
+      dates = value.map(function(date) {
+        return self._resetTime(new Date(date));
+      });
+    } else {
+      dates = [self._resetTime(new Date(value))];
+    }
+
+    element.datepicker.
+            apply(element, Array.prototype.concat.call(['update'], dates));
+  }.observes('value'),
+
+  // HACK: Have to reset time to 00:00:00 because of the bug in
+  //       bootstrap-datepicker
+  //       Issue: http://git.io/qH7Hlg
+  _resetTime: function(date) {
+    date.setHours(0);
+    date.setMinutes(0);
+    date.setSeconds(0);
+
+    return date;
   }
 });
