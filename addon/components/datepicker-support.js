@@ -65,15 +65,14 @@ export default Ember.Mixin.create({
     if (event.date) {
       if (this.get('multidate')) {
          // set value to array if multidate
-         isoDate = this.$().datepicker('getUTCDates').map(function(date) {
+         isoDate = this.$().datepicker('getDates').map(function(date) {
            return date.toISOString();
          });
       }
       else {
-         isoDate = this.$().datepicker('getUTCDate').toISOString();
+         isoDate = this.$().datepicker('getDate').toISOString();
       }
     }
-
     this.set('value', isoDate);
   },
 
