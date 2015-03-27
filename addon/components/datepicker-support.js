@@ -81,15 +81,21 @@ export default Ember.Mixin.create({
         element = this.$(),
         value = this.get('value'),
         dates = [];
-
-    if (Ember.isArray(value)) {
-      dates = value.map(function(date) {
-        return self._resetTime(new Date(date));
-      });
+    
+    // If value is undefined or null, we don't want bootstrap-datepicker to 
+    // display 1970-01-01. We want a blank value. 
+    if (value) {
+      if (Ember.isArray(value)) {
+        dates = value.map(function(date) {
+          return self._resetTime(new Date(date));
+        });
+      } else {
+        dates = [self._resetTime(new Date(value))];
+      }
     } else {
-      dates = [self._resetTime(new Date(value))];
+      dates = [null];
     }
-
+    
     element.datepicker.
             apply(element, Array.prototype.concat.call(['update'], dates));
   }.observes('value'),
