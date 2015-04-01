@@ -4,6 +4,8 @@ export default Ember.Mixin.create({
   value: null,
 
   setupBootstrapDatepicker: function() {
+    var self = this;
+
     this.$().
       datepicker({
         autoclose: this.get('autoclose'),
@@ -27,9 +29,9 @@ export default Ember.Mixin.create({
       }).
       on('changeDate', function(event) {
         Ember.run(function() {
-          this.didChangeDate(event);
-        }.bind(this));
-      }.bind(this));
+          self.didChangeDate(event);
+        });
+      });
 
     this._updateDatepicker();
   }.on('didInsertElement'),
@@ -57,7 +59,8 @@ export default Ember.Mixin.create({
   }.observes('value'),
 
   _updateDatepicker: function() {
-    var element = this.$(),
+    var self = this,
+        element = this.$(),
         value = this.get('value'),
         dates = [];
 
@@ -72,8 +75,8 @@ export default Ember.Mixin.create({
         dates = [null];
     }
     dates = dates.map(function(date) {
-      return (Ember.isNone(date)) ? null : this._resetTime(date);
-    }.bind(this));
+      return (Ember.isNone(date)) ? null : self._resetTime(date);
+    });
 
     element.datepicker
            .apply(element, Array.prototype.concat.call(['update'], dates));
