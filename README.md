@@ -4,6 +4,8 @@
 
 The add-on provides you a date input component based on amazing bootstrap-datepicker library. It supports popup and inline mode, and can be used in Ember CLI applications.
 
+It doesn't have any external dependecy except bootstrap-datepicker.
+
 [Online demo](http://sul.im/ember-cli-bootstrap-datepicker)
 
 ## Installation
@@ -165,8 +167,10 @@ Default: `0` or `'month'`
 
 #### todayBtn
 
-Type: `Boolean`
+Type: `Boolean` or `String`
 Default: `false`
+
+> If true or “linked”, displays a “Today” button at the bottom of the datepicker to select the current date. If true, the “Today” button will only move the current date into view; if “linked”, the current date will also be selected. [More...](http://bootstrap-datepicker.readthedocs.org/en/latest/options.html#todaybtn)
 
 ```handlebars
 {{bootstrap-datepicker value=expiresAt todayBtn=true}}
