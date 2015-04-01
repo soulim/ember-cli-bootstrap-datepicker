@@ -24,7 +24,7 @@ test('should display date with default format when no format is set', function()
   expect(1);
 
   var component = this.subject({
-    value: '2014-12-31T00:00:00.000Z'
+    value: new Date(2014, 11, 31)
   });
 
   equal(this.$().val(), '12/31/2014');
@@ -34,7 +34,7 @@ test('should display date with custom format when format is set', function(){
   expect(1);
 
   var component = this.subject({
-    value: '2014-12-31T00:00:00.000Z',
+    value: new Date(2014, 11, 31),
     format: 'dd.M.yy'
   });
 
@@ -43,9 +43,9 @@ test('should display date with custom format when format is set', function(){
 
 test('should set dates provided by value (multidate, default multidateSeparator)', function(){
   expect(2);
-  
+
   var component = this.subject({
-    value: '2015-01-13T00:00:00.000Z,2015-01-07T00:00:00.000Z,2015-01-15T00:00:00.000Z',
+    value: [new Date(2015, 0, 13), new Date(2015, 0, 7), new Date(2015, 0, 15)],
     multidate: true
   });
 
@@ -57,7 +57,7 @@ test('should set dates provided by value (multidate, multidateSeparator provided
   expect(2);
 
   var component = this.subject({
-    value: '2015-01-13T00:00:00.000Z;2015-01-07T00:00:00.000Z;2015-01-15T00:00:00.000Z',
+    value: [new Date(2015, 0, 13), new Date(2015, 0, 7), new Date(2015, 0, 15)],
     multidate: true,
     multidateSeparator: ';'
   });

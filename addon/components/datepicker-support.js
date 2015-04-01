@@ -4,12 +4,7 @@ export default Ember.Mixin.create({
   value: null,
 
   setupBootstrapDatepicker: function() {
-    var self = this,
-        element = this.$(),
-        value = this.get('value'),
-        dates = [];
-
-    element.
+    this.$().
       datepicker({
         autoclose: this.get('autoclose'),
         calendarWeeks: this.get('calendarWeeks'),
@@ -32,27 +27,11 @@ export default Ember.Mixin.create({
       }).
       on('changeDate', function(event) {
         Ember.run(function() {
-          self.didChangeDate(event);
-        });
-      });
+          this.didChangeDate(event);
+        }.bind(this));
+      }.bind(this));
 
-    if (value) {
-      if (this.get('multidate')) {
-        // split datesIsoString by multidate separator
-        var multidateSeparator = this.get('multidateSeparator') || ',';
-        var isoDates = value.split(multidateSeparator);
-
-        // generate array of date objecs
-        dates = isoDates.map(function(date) {
-          return self._resetTime(new Date(date));
-        });
-      }
-      else {
-        dates = [self._resetTime(new Date(value))];
-      }
-      element.datepicker.
-              apply(element, Array.prototype.concat.call(['update'], dates));
-    }
+    this._updateDatepicker();
   }.on('didInsertElement'),
 
   teardownBootstrapDatepicker: function() {
@@ -60,45 +39,45 @@ export default Ember.Mixin.create({
   }.on('willDestroyElement'),
 
   didChangeDate: function(event) {
-    var isoDate = null;
+    var value = null;
 
     if (event.date) {
       if (this.get('multidate')) {
-         // set value to array if multidate
-         isoDate = this.$().datepicker('getDates').map(function(date) {
-           return date.toISOString();
-         });
-      }
-      else {
-         isoDate = this.$().datepicker('getDate').toISOString();
+        value = this.$().datepicker('getDates');
+      } else {
+        value = this.$().datepicker('getDate');
       }
     }
-    this.set('value', isoDate);
+
+    this.set('value', value);
   },
 
   didChangeValue: function() {
-    var self = this,
-        element = this.$(),
+    this._updateDatepicker();
+  }.observes('value'),
+
+  _updateDatepicker: function() {
+    var element = this.$(),
         value = this.get('value'),
         dates = [];
-    
-    // If value is undefined or null, we don't want bootstrap-datepicker to 
-    // display 1970-01-01. We want a blank value. 
-    if (value) {
-      if (Ember.isArray(value)) {
-        dates = value.map(function(date) {
-          return self._resetTime(new Date(date));
-        });
-      } else {
-        dates = [self._resetTime(new Date(value))];
-      }
-    } else {
-      dates = [null];
+
+    switch (Ember.typeOf(value)) {
+      case 'array':
+        dates = value;
+        break;
+      case 'date':
+        dates = [value];
+        break;
+      default:
+        dates = [null];
     }
-    
-    element.datepicker.
-            apply(element, Array.prototype.concat.call(['update'], dates));
-  }.observes('value'),
+    dates = dates.map(function(date) {
+      return (Ember.isNone(date)) ? null : this._resetTime(date);
+    }.bind(this));
+
+    element.datepicker
+           .apply(element, Array.prototype.concat.call(['update'], dates));
+  },
 
   // HACK: Have to reset time to 00:00:00 because of the bug in
   //       bootstrap-datepicker
@@ -107,6 +86,7 @@ export default Ember.Mixin.create({
     date.setHours(0);
     date.setMinutes(0);
     date.setSeconds(0);
+    date.setMilliseconds(0);
 
     return date;
   }
