@@ -1,6 +1,7 @@
 # Ember CLI datepicker add-on
 
 [![Build Status](https://travis-ci.org/soulim/ember-cli-bootstrap-datepicker.svg?branch=master&style=flat)](https://travis-ci.org/soulim/ember-cli-bootstrap-datepicker)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-cli-bootstrap-datepicker.svg)](http://emberobserver.com/addons/ember-cli-bootstrap-datepicker)
 
 The add-on provides you a date input component based on amazing bootstrap-datepicker library. It supports popup and inline mode, and can be used in Ember CLI applications.
 
