@@ -218,7 +218,7 @@ ember generate bootstrap-datepicker</pre>
         Default: <code>'en'</code>
       </p>
       <p>Please note, to make German language available I've added one line into <code>Brocfile.js</code>:</p>
-      <pre><code>app.import('bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.de.js');</code></pre>
+      <pre><code>app.import(app.bowerDirectory + '/bootstrap-datepicker/dist/locales/bootstrap-datepicker.de.min.js');</code></pre>
 
       <p>Months are translated in German, date format is changed, and weeks start from Monday now. So it's pretty convenient :)</p>
     </div>
@@ -256,7 +256,7 @@ ember generate bootstrap-datepicker</pre>
     <div class="panel-body">
       <p>
         Type: <code>Boolean</code> or <code>Number</code><br>
-        Default: <code>false</code></code>
+        Default: <code>false</code>
       </p>
       <p>If multidate is <code>true</code>, <code>value</code> is an array.</p>
       <p>Please, read more about possible values <a href="http://bootstrap-datepicker.readthedocs.org/en/release/options.html#multidate">here</a>.</p>
@@ -276,7 +276,7 @@ ember generate bootstrap-datepicker</pre>
     <div class="panel-body">
       <p>
         Type: <code>String</code><br>
-        Default: <code>,</code></code>
+        Default: <code>,</code>
       </p>
       <p>Please, read more about possible values <a href="https://bootstrap-datepicker.readthedocs.org/en/release/options.html#multidateseparator">here</a>.</p>
     </div>
