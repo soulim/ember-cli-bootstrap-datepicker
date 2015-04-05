@@ -23,6 +23,6 @@ app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css.map', {
   destDir: 'assets'
 });
 
-app.import(app.bowerDirectory + '/bootstrap-datepicker/js/locales/bootstrap-datepicker.de.js');
+app.import(app.bowerDirectory + '/bootstrap-datepicker/dist/locales/bootstrap-datepicker.de.min.js');
 
 module.exports = app.toTree();
