@@ -13,6 +13,6 @@ moduleForComponent('bootstrap-datepicker', 'bootstrap-datepicker component', {
   }
 });
 
-test('...', function() {
-  expect(0);
+test('...', function(assert) {
+  assert.expect(0);
 });

@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
   value: null,
 
-  setupBootstrapDatepicker: function() {
+  setupBootstrapDatepicker: Ember.on('didInsertElement', function() {
     var self = this;
 
     this.$().
@@ -29,18 +29,22 @@ export default Ember.Mixin.create({
       }).
       on('changeDate', function(event) {
         Ember.run(function() {
-          self.didChangeDate(event);
+          self._didChangeDate(event);
         });
       });
 
     this._updateDatepicker();
-  }.on('didInsertElement'),
+  }),
 
-  teardownBootstrapDatepicker: function() {
+  teardownBootstrapDatepicker: Ember.on('willDestroyElement', function() {
     this.$().datepicker('remove');
-  }.on('willDestroyElement'),
+  }),
 
-  didChangeDate: function(event) {
+  didChangeValue: Ember.observer('value', function() {
+    this._updateDatepicker();
+  }),
+
+  _didChangeDate: function(event) {
     var value = null;
 
     if (event.date) {
@@ -53,10 +57,6 @@ export default Ember.Mixin.create({
 
     this.set('value', value);
   },
-
-  didChangeValue: function() {
-    this._updateDatepicker();
-  }.observes('value'),
 
   _updateDatepicker: function() {
     var self = this,
