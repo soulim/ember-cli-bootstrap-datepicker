@@ -58,6 +58,11 @@ export default Ember.Mixin.create({
     this.set('value', value);
   },
 
+  _didChangeLanguage: Ember.observer('language', function() {
+    this.$().datepicker('remove');
+    this.setupBootstrapDatepicker();
+  }),
+
   _updateDatepicker: function() {
     var self = this,
         element = this.$(),
@@ -81,12 +86,6 @@ export default Ember.Mixin.create({
     element.datepicker
            .apply(element, Array.prototype.concat.call(['update'], dates));
   },
-
-  _updateLanguage: Ember.observer('language', function() {
-    console.log('test');
-    this.$().datepicker('remove');
-    this.setupBootstrapDatepicker();
-  }),
 
   // HACK: Have to reset time to 00:00:00 because of the bug in
   //       bootstrap-datepicker
