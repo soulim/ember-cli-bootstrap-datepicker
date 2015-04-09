@@ -58,6 +58,11 @@ export default Ember.Mixin.create({
     this.set('value', value);
   },
 
+  _didChangeLanguage: Ember.observer('language', function() {
+    this.$().datepicker('remove');
+    this.setupBootstrapDatepicker();
+  }),
+
   _updateDatepicker: function() {
     var self = this,
         element = this.$(),
