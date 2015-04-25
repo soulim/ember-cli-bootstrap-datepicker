@@ -56,6 +56,7 @@ export default Ember.Mixin.create({
     }
 
     this.set('value', value);
+    this.sendAction('changeDate', value);
   },
 
   _didChangeLanguage: Ember.observer('language', function() {
