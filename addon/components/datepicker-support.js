@@ -39,6 +39,11 @@ export default Ember.Mixin.create({
         Ember.run(function() {
           self._didChangeDate(event);
         });
+      }).
+      on('input', function() {
+        if (!self.$().val()) {
+          self.set('value', null);
+        }
       });
 
     this._updateDatepicker();
