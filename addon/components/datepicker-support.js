@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
+  mustUpdateInput: true,
   value: null,
 
   setupBootstrapDatepicker: Ember.on('didInsertElement', function() {
@@ -63,6 +64,7 @@ export default Ember.Mixin.create({
       }
     }
 
+    this.set('mustUpdateInput', false); 
     this.set('value', value);
     this.sendAction('changeDate', value);
   },
@@ -77,6 +79,11 @@ export default Ember.Mixin.create({
         element = this.$(),
         value = this.get('value'),
         dates = [];
+
+    if (!this.get('mustUpdateInput')) {
+      this.set('mustUpdateInput', true);
+      return;
+    }
 
     switch (Ember.typeOf(value)) {
       case 'array':
