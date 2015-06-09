@@ -45,6 +45,7 @@
   "dependencies": {
     "ember-cli-babel": "^5.0.0"
   },
+  "main": "index.js",
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "defaultBlueprint": "bootstrap-datepicker",
