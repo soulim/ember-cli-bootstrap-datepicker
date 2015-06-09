@@ -49,6 +49,7 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "defaultBlueprint": "bootstrap-datepicker",
-    "demoURL": "http://sul.im/ember-cli-bootstrap-datepicker/"
+    "demoURL": "http://sul.im/ember-cli-bootstrap-datepicker/",
+    "main": "index.js"
   }
 }
