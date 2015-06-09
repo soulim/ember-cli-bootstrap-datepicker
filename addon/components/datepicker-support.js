@@ -74,6 +74,16 @@ export default Ember.Mixin.create({
     this.setupBootstrapDatepicker();
   }),
 
+  _updateStartDate: Ember.observer('startDate', function() {
+    this.$().datepicker('setStartDate', this.get('startDate'));
+    this._updateDatepicker();
+  }),
+
+  _updateEndDate: Ember.observer('endDate', function() {
+    this.$().datepicker('setEndDate', this.get('endDate'));
+    this._updateDatepicker();
+  }),
+
   _updateDatepicker: function() {
     var self = this,
         element = this.$(),
