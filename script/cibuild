@@ -5,4 +5,4 @@
 
 set -o errexit
 
-ember test
+ember try $EMBER_TRY_SCENARIO test
