@@ -1,7 +1,7 @@
 import { test, moduleForComponent } from 'ember-qunit';
 import Ember from 'ember';
 
-moduleForComponent('bootstrap-datepicker', 'bootstrap-datepicker component');
+moduleForComponent('bootstrap-datepicker', 'bootstrap-datepicker component', {});
 
 test('should be an input tag', function(assert) {
   assert.expect(1);
