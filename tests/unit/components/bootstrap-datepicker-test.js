@@ -30,6 +30,21 @@ test('should display date with default format when no format is set', function(a
   assert.equal(this.$().val(), '12/31/2014');
 });
 
+test('should reset date when input is cleared', function(assert) {
+  assert.expect(2);
+
+  this.subject({
+    value: new Date(2014, 11, 31)
+  });
+
+  assert.ok(this.$().datepicker('getDate'), 'initial value is set');
+
+  this.$().val('');
+  this.$().trigger('input');
+
+  assert.equal(this.$().datepicker('getDate'), null, 'value is reset when input is cleared');
+});
+
 test('should display date with custom format when format is set', function(assert) {
   assert.expect(1);
 
