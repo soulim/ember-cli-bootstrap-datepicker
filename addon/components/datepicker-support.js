@@ -34,7 +34,8 @@ export default Ember.Mixin.create({
         todayBtn: this.get('todayBtn'),
         todayHighlight: this.get('todayHighlight'),
         toggleActive: this.get('toggleActive'),
-        weekStart: this.get('weekStart')
+        weekStart: this.get('weekStart'),
+        datesDisabled: this.get('datesDisabled')
       }).
       on('changeDate', function(event) {
         Ember.run(function() {
@@ -88,6 +89,12 @@ export default Ember.Mixin.create({
     this.$().datepicker('setEndDate', this.get('endDate'));
     this._updateDatepicker();
   }),
+
+  _updateDatesDisabled: Ember.observer('datesDisabled', function() {
+    this.$().datepicker('setDatesDisabled', this.get('datesDisabled'));
+    this._updateDatepicker();
+  }),
+  
 
   _updateDatepicker: function() {
     var self = this,
