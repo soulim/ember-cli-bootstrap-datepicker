@@ -3,6 +3,10 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
   mustUpdateInput: true,
   value: null,
+  // add the observed properties
+  language: null,
+  startDate: null,
+  endDate: null,
 
   setupBootstrapDatepicker: Ember.on('didInsertElement', function() {
     var self = this;
@@ -70,7 +74,7 @@ export default Ember.Mixin.create({
       }
     }
 
-    this.set('mustUpdateInput', false); 
+    this.set('mustUpdateInput', false);
     this.set('value', value);
     this.sendAction('changeDate', value);
   },
@@ -94,7 +98,7 @@ export default Ember.Mixin.create({
     this.$().datepicker('setDatesDisabled', this.get('datesDisabled'));
     this._updateDatepicker();
   }),
-  
+
 
   _updateDatepicker: function() {
     var self = this,
