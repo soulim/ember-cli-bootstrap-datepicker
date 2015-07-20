@@ -3,8 +3,12 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
   mustUpdateInput: true,
   value: null,
+  // add the observed properties
   minViewMode: undefined,
   format: undefined,
+  language: undefined,
+  startDate: undefined,
+  endDate: undefined,
 
   setupBootstrapDatepicker: Ember.on('didInsertElement', function() {
     var self = this;
@@ -24,7 +28,7 @@ export default Ember.Mixin.create({
         format: this.get('format'),
         immediateUpdates: this.get('immediateUpdates'),
         keyboardNavigation: this.get('keyboardNavigation'),
-        language: this.get('language'),
+        language: this.get('language') || undefined,
         maxViewMode: this.get('maxViewMode'),
         minViewMode: this.get('minViewMode'),
         multidate: this.get('multidate'),
@@ -108,7 +112,6 @@ export default Ember.Mixin.create({
     this.$().data('datepicker')._process_options({format: this.get('format')});
     this._updateDatepicker();
   }),
-
 
   _updateDatepicker: function() {
     var self = this,
