@@ -26,7 +26,7 @@ export default Ember.Mixin.create({
         format: this.get('format'),
         immediateUpdates: this.get('immediateUpdates'),
         keyboardNavigation: this.get('keyboardNavigation'),
-        language: this.get('language'),
+        language: this.get('language') || undefined,
         maxViewMode: this.get('maxViewMode'),
         minViewMode: this.get('minViewMode'),
         multidate: this.get('multidate'),
