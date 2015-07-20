@@ -95,6 +95,16 @@ export default Ember.Mixin.create({
     this._updateDatepicker();
   }),
   
+  _updateMinViewMode: Ember.observer('minViewMode', function() {
+    this.$().datepicker('minViewMode', this.get('minViewMode'));
+    this._updateDatepicker();
+  }),
+  
+  _updateFomat: Ember.observer('format', function() {
+    this.$().datepicker('format', this.get('format'));
+    this._updateDatepicker();
+  }),
+  
 
   _updateDatepicker: function() {
     var self = this,
