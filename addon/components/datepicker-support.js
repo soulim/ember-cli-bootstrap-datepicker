@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
   mustUpdateInput: true,
   value: null,
+  minViewMode: null,
+  format: null,
 
   setupBootstrapDatepicker: Ember.on('didInsertElement', function() {
     var self = this;
@@ -70,7 +72,7 @@ export default Ember.Mixin.create({
       }
     }
 
-    this.set('mustUpdateInput', false); 
+    this.set('mustUpdateInput', false);
     this.set('value', value);
     this.sendAction('changeDate', value);
   },
@@ -94,17 +96,19 @@ export default Ember.Mixin.create({
     this.$().datepicker('setDatesDisabled', this.get('datesDisabled'));
     this._updateDatepicker();
   }),
-  
-  _updateMinViewMode: Ember.observer('minViewMode', function() {
+
+  _updateMinViewMode: function() {
     this.$().datepicker('minViewMode', this.get('minViewMode'));
+    this.$().data('datepicker')._process_options({minViewMode: this.get('minViewMode')});
     this._updateDatepicker();
-  }),
-  
-  _updateFomat: Ember.observer('format', function() {
+  }.observes('minViewMode'),
+
+  _updateFomat: function() {
     this.$().datepicker('format', this.get('format'));
+    this.$().data('datepicker')._process_options({format: this.get('format')});
     this._updateDatepicker();
-  }),
-  
+  }.observes('format'),
+
 
   _updateDatepicker: function() {
     var self = this,
