@@ -96,3 +96,41 @@ test('should update startDate', function(assert) {
   component.set("startDate", newStartDate);
   assert.equal(this.$().datepicker("setDate").o.startDate.getMonth(), newStartDate.getMonth(), 'should update startDate');
 });
+
+test('should update format', function(assert) {
+  assert.expect(2);
+
+  var format = 'mm/yyyy';
+  var newFormat = 'yyyy';
+
+  var component = this.subject({
+    value: new Date(2015, 4),
+    format: format
+  });
+
+  assert.equal(this.$().data('datepicker').o.format, format, 'should set initial format');
+
+  component.set('format', newFormat);
+
+  assert.equal(this.$().data('datepicker').o.format, newFormat, 'should update format');
+});
+
+test('should update minViewMode', function(assert) {
+  assert.expect(2);
+
+  var minViewMode = 'years';
+  var yearsViewModeNumber = 2;
+  var newMinViewMode = 'months';
+  var monthsViewModeNumber = 1;
+
+  var component = this.subject({
+    value: new Date(2015, 4),
+    minViewMode: minViewMode
+  });
+
+  assert.equal(this.$().data('datepicker').o.minViewMode, yearsViewModeNumber, 'should set initial format');
+
+  component.set('minViewMode', newMinViewMode);
+
+  assert.equal(this.$().data('datepicker').o.minViewMode, monthsViewModeNumber, 'should update format');
+});
