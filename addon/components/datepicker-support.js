@@ -81,36 +81,38 @@ export default Ember.Mixin.create({
     this.sendAction('changeDate', value);
   },
 
-  _didChangeLanguage: Ember.observer('language', function() {
-    this.$().datepicker('remove');
-    this.setupBootstrapDatepicker();
-  }),
+  _addObservers: Ember.on('didInsertElement', function() {
+    this.addObserver('language', function() {
+      this.$().datepicker('remove');
+      this.setupBootstrapDatepicker();
+    });
 
-  _updateStartDate: Ember.observer('startDate', function() {
-    this.$().datepicker('setStartDate', this.get('startDate'));
-    this._updateDatepicker();
-  }),
+    this.addObserver('startDate', function() {
+      this.$().datepicker('setStartDate', this.get('startDate'));
+      this._updateDatepicker();
+    });
 
-  _updateEndDate: Ember.observer('endDate', function() {
-    this.$().datepicker('setEndDate', this.get('endDate'));
-    this._updateDatepicker();
-  }),
+    this.addObserver('endDate', function() {
+      this.$().datepicker('setEndDate', this.get('endDate'));
+      this._updateDatepicker();
+    });
 
-  _updateDatesDisabled: Ember.observer('datesDisabled', function() {
-    this.$().datepicker('setDatesDisabled', this.get('datesDisabled'));
-    this._updateDatepicker();
-  }),
+    this.addObserver('datesDisabled', function() {
+      this.$().datepicker('setDatesDisabled', this.get('datesDisabled'));
+      this._updateDatepicker();
+    });
 
-  _updateMinViewMode: Ember.observer('minViewMode', function() {
-    this.$().datepicker('minViewMode', this.get('minViewMode'));
-    this.$().data('datepicker')._process_options({minViewMode: this.get('minViewMode')});
-    this._updateDatepicker();
-  }),
+    this.addObserver('minViewMode', function() {
+      this.$().datepicker('minViewMode', this.get('minViewMode'));
+      this.$().data('datepicker')._process_options({minViewMode: this.get('minViewMode')});
+      this._updateDatepicker();
+    });
 
-  _updateFomat: Ember.observer('format', function() {
-    this.$().datepicker('format', this.get('format'));
-    this.$().data('datepicker')._process_options({format: this.get('format')});
-    this._updateDatepicker();
+    this.addObserver('format', function() {
+      this.$().datepicker('format', this.get('format'));
+      this.$().data('datepicker')._process_options({format: this.get('format')});
+      this._updateDatepicker();
+    });
   }),
 
   _updateDatepicker: function() {
