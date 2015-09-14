@@ -9,6 +9,9 @@ export default Ember.Mixin.create({
   language: undefined,
   startDate: undefined,
   endDate: undefined,
+  customParser: function(value) {
+    return value;
+  },
 
   setupBootstrapDatepicker: Ember.on('didInsertElement', function() {
 
@@ -134,12 +137,15 @@ export default Ember.Mixin.create({
   _updateDatepicker: function() {
     var element = this.$(),
         value = this.get('value'),
+        customParser = this.get('customParser'),
         dates = [];
 
     if (!this.get('mustUpdateInput')) {
       this.set('mustUpdateInput', true);
       return;
     }
+
+    value = customParser(value);
 
     switch (Ember.typeOf(value)) {
       case 'array':
