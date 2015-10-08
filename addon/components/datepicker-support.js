@@ -137,7 +137,7 @@ export default Ember.Mixin.create({
         dates = [null];
     }
     dates = dates.map(function(date) {
-      return (Ember.isNone(date)) ? null : self._resetTime(date);
+      return (Ember.isNone(date)) ? null : self._getDateCloneWithNoTime(date);
     });
 
     element.datepicker
@@ -147,12 +147,14 @@ export default Ember.Mixin.create({
   // HACK: Have to reset time to 00:00:00 because of the bug in
   //       bootstrap-datepicker
   //       Issue: http://git.io/qH7Hlg
-  _resetTime: function(date) {
-    date.setHours(0);
-    date.setMinutes(0);
-    date.setSeconds(0);
-    date.setMilliseconds(0);
+  _getDateCloneWithNoTime: function(date) {
+    var clone = new Date(date.getTime());
 
-    return date;
+    clone.setHours(0);
+    clone.setMinutes(0);
+    clone.setSeconds(0);
+    clone.setMilliseconds(0);
+
+    return clone;
   }
 });
