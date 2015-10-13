@@ -48,9 +48,9 @@ export default Ember.Mixin.create({
           self._didChangeDate(event);
         });
       }).
-      on('input', function(event) {
+      on('input', function() {
         if (!self.$().val()) {
-          self._didChangeDate(event);
+          self._applyDateValue(null);
         }
       });
 
@@ -77,6 +77,10 @@ export default Ember.Mixin.create({
     }
 
     this.set('mustUpdateInput', false);
+    this._applyDateValue(value);
+  },
+
+  _applyDateValue: function(value) {
     this.set('value', value);
     this.sendAction('changeDate', value);
   },
