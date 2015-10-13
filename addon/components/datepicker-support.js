@@ -48,9 +48,9 @@ export default Ember.Mixin.create({
           self._didChangeDate(event);
         });
       }).
-      on('input', function() {
+      on('input', function(event) {
         if (!self.$().val()) {
-          self.set('value', null);
+          self._didChangeDate(event);
         }
       });
 
