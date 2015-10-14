@@ -50,7 +50,7 @@ export default Ember.Mixin.create({
       }).
       on('input', function() {
         if (!self.$().val()) {
-          self.set('value', null);
+          self._applyDateValue(null);
         }
       });
 
@@ -77,6 +77,10 @@ export default Ember.Mixin.create({
     }
 
     this.set('mustUpdateInput', false);
+    this._applyDateValue(value);
+  },
+
+  _applyDateValue: function(value) {
     this.set('value', value);
     this.sendAction('changeDate', value);
   },
