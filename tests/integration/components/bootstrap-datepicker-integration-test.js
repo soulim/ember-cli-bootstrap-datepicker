@@ -49,3 +49,38 @@ test('triggers changeDate action when input field is cleared', function (assert)
 
   assert.ok(actionIsTriggered, 'action is triggered');
 });
+
+test('triggers specified action on focusout event', function (assert) {
+  assert.expect(1);
+
+  this.render(hbs`
+    {{bootstrap-datepicker focus-out="focusOutAction"}}
+  `);
+
+  var actionIsTriggered = false;
+  this.on('focusOutAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.$('input.ember-text-field').trigger('focusout');
+
+  assert.ok(actionIsTriggered, 'action is triggered on focusout');
+});
+
+
+test('triggers specified action on focusin event', function (assert) {
+  assert.expect(1);
+
+  this.render(hbs`
+    {{bootstrap-datepicker focus-in="focusInAction"}}
+  `);
+
+  var actionIsTriggered = false;
+  this.on('focusInAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.$('input.ember-text-field').trigger('focusin');
+
+  assert.ok(actionIsTriggered, 'action is triggered on focusin');
+});

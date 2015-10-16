@@ -52,6 +52,12 @@ export default Ember.Mixin.create({
         if (!self.$().val()) {
           self._applyDateValue(null);
         }
+      }).
+      on('focusout', function(event) {
+        self.sendAction('focus-out', self, event);
+      }).
+      on('focusin', function(event) {
+        self.sendAction('focus-in', self, event);
       });
 
     this._updateDatepicker();
