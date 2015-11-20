@@ -25,7 +25,7 @@ export default Ember.Mixin.create({
         enableOnReadonly: this.get('enableOnReadonly'),
         endDate: this.get('endDate'),
         forceParse: this.get('forceParse'),
-        format: this.get('format'),
+        format: this._toString(this.get('format')),
         immediateUpdates: this.get('immediateUpdates'),
         keyboardNavigation: this.get('keyboardNavigation'),
         language: this.get('language') || undefined,
@@ -113,8 +113,9 @@ export default Ember.Mixin.create({
     });
 
     this.addObserver('format', function() {
-      this.$().datepicker('format', this.get('format'));
-      this.$().data('datepicker')._process_options({format: this.get('format')});
+      let format = this._toString(this.get('format'));
+      this.$().datepicker('format', format);
+      this.$().data('datepicker')._process_options({format: format});
       this._updateDatepicker();
     });
   }),
@@ -160,5 +161,23 @@ export default Ember.Mixin.create({
     clone.setMilliseconds(0);
 
     return clone;
+  },
+
+  /**
+   * Fix Issue #59
+   * _toString Checks and converts the input object and returns  a String if it is required and feasible
+   * @param  {Object} obj The object to check
+   * @return {Object} The object as a String
+   */
+  _toString: function (obj) {
+    if (typeof obj !== typeof Undefined && obj !== typeof String) {
+      if (typeof obj.toString === typeof Function) {
+        obj = obj.toString();
+      } else {
+        // No toString() method available - There is nothing else that can be done
+        throw new Error("At _toString() (datepicker-support.js) - No toString() method available for the passed object.");
+      }
+    }
+    return obj;
   }
 });
