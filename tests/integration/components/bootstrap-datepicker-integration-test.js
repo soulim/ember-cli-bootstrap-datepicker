@@ -95,3 +95,20 @@ test('triggers show action when date datepicker is displayed', function(assert) 
 
   assert.ok(actionIsTriggered, 'action is triggered');
 });
+
+test('triggers hide action when date datepicker is hidden', function(assert) {
+  assert.expect(1);
+
+  var actionIsTriggered = false;
+  this.on('myAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.render(hbs`
+    {{bootstrap-datepicker hide="myAction"}}
+  `);
+
+  this.$('input.ember-text-field').trigger('hide');
+
+  assert.ok(actionIsTriggered, 'action is triggered');
+});

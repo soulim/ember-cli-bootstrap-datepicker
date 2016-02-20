@@ -61,6 +61,9 @@ export default Ember.Mixin.create({
       }).
       on('show', function() {
         self.sendAction('show');
+      }).
+      on('hide', function() {
+        self.sendAction('hide');
       });
 
     this._updateDatepicker();
