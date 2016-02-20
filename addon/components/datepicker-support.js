@@ -48,11 +48,6 @@ export default Ember.Mixin.create({
           self._didChangeDate(event);
         });
       }).
-      on('input', function() {
-        if (!self.$().val()) {
-          self._applyDateValue(null);
-        }
-      }).
       on('focusout', function(event) {
         self.sendAction('focus-out', self, event);
       }).
@@ -83,10 +78,6 @@ export default Ember.Mixin.create({
     }
 
     this.set('mustUpdateInput', false);
-    this._applyDateValue(value);
-  },
-
-  _applyDateValue: function(value) {
     this.set('value', value);
     this.sendAction('changeDate', value);
   },
