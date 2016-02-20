@@ -39,3 +39,44 @@ test('triggers specified action on focusin event', function (assert) {
 
   assert.ok(actionIsTriggered, 'action is triggered on focusin');
 });
+
+test('triggers changeDate action when date selection changes', function(assert) {
+  assert.expect(1);
+
+  this.set('myDate', null);
+
+  var actionIsTriggered = false;
+  this.on('myAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.render(hbs`
+    {{bootstrap-datepicker value=myDate changeDate="myAction"}}
+  `);
+
+  var input = this.$('input.ember-text-field');
+  input.datepicker('setDate', new Date());
+
+  assert.ok(actionIsTriggered, 'action is triggered');
+});
+
+test('triggers clearDate action when date selection is cleared', function(assert) {
+  assert.expect(1);
+
+  this.set('myDate', new Date());
+
+  var actionIsTriggered = false;
+  this.on('myAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.render(hbs`
+    {{bootstrap-datepicker value=myDate clearDate="myAction"}}
+  `);
+
+  var input = this.$('input.ember-text-field');
+  input.datepicker('setDate', null);
+
+  assert.ok(actionIsTriggered, 'action is triggered');
+});
+

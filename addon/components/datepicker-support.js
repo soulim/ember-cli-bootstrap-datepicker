@@ -53,6 +53,11 @@ export default Ember.Mixin.create({
       }).
       on('focusin', function(event) {
         self.sendAction('focus-in', self, event);
+      }).
+      on('clearDate', function(event) {
+        Ember.run(function() {
+          self._didChangeDate(event);
+        });
       });
 
     this._updateDatepicker();
@@ -79,7 +84,11 @@ export default Ember.Mixin.create({
 
     this.set('mustUpdateInput', false);
     this.set('value', value);
-    this.sendAction('changeDate', value);
+    if (event.type === 'clearDate') {
+      this.sendAction('clearDate');
+    } else {
+      this.sendAction('changeDate', value);
+    }
   },
 
   _addObservers: Ember.on('didInsertElement', function() {
