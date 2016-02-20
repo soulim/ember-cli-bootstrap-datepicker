@@ -22,7 +22,6 @@ test('triggers specified action on focusout event', function (assert) {
   assert.ok(actionIsTriggered, 'action is triggered on focusout');
 });
 
-
 test('triggers specified action on focusin event', function (assert) {
   assert.expect(1);
 
@@ -80,3 +79,19 @@ test('triggers clearDate action when date selection is cleared', function(assert
   assert.ok(actionIsTriggered, 'action is triggered');
 });
 
+test('triggers show action when date datepicker is displayed', function(assert) {
+  assert.expect(1);
+
+  var actionIsTriggered = false;
+  this.on('myAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.render(hbs`
+    {{bootstrap-datepicker show="myAction"}}
+  `);
+
+  this.$('input.ember-text-field').trigger('show');
+
+  assert.ok(actionIsTriggered, 'action is triggered');
+});

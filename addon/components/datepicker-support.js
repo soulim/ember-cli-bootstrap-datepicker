@@ -58,6 +58,9 @@ export default Ember.Mixin.create({
         Ember.run(function() {
           self._didChangeDate(event);
         });
+      }).
+      on('show', function() {
+        self.sendAction('show');
       });
 
     this._updateDatepicker();
