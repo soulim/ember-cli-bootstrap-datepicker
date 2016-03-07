@@ -203,6 +203,50 @@ Default: `0` (Sunday)
 {{bootstrap-datepicker value=expiresAt weekStart=1}}
 ```
 
+### Actions
+
+#### changeDate
+
+The changeDate action is triggered when the selected date changes. It can be specified like this:
+
+
+```handlebars
+{{bootstrap-datepicker changeDate="changeDateAction"}}
+```
+
+The action can be handled by a parent component, controller or route:
+
+```javascript
+actions {
+  changeDateAction(date) {
+    // do sth with the new date
+  }
+}
+```
+
+#### focus-in & focus-out
+
+The focus-in and focus-out actions are triggered when the respective focus events occur on the input field.
+
+```handlebars
+{{bootstrap-datepicker focus-in="focusInAction" focus-out="focusOutAction"}}
+```
+
+The actions can be handled by a parent component, controller or route:
+
+```javascript
+actions {
+  focusInAction(component, event) {
+    // handle event
+  },
+  focusOutAction(component, event) {
+    // handle event
+  }
+}
+```
+
+
+
 ## Contributing
 
 1. Fork it
