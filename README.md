@@ -217,9 +217,28 @@ The changeDate action is triggered when the selected date changes. It can be spe
 The action can be handled by a parent component, controller or route:
 
 ```javascript
-actions {
+actions: {
   changeDateAction(date) {
     // do sth with the new date
+  }
+}
+```
+
+#### clearDate
+
+The clearDate action is triggered when the date is cleared (e.g. when the "clear" button is clicked).
+
+
+```handlebars
+{{bootstrap-datepicker clearDate="clearDateAction"}}
+```
+
+The action can be handled by a parent component, controller or route:
+
+```javascript
+actions: {
+  clearDateAction() {
+    // do sth
   }
 }
 ```
@@ -235,7 +254,7 @@ The focus-in and focus-out actions are triggered when the respective focus event
 The actions can be handled by a parent component, controller or route:
 
 ```javascript
-actions {
+actions: {
   focusInAction(component, event) {
     // handle event
   },
@@ -245,6 +264,26 @@ actions {
 }
 ```
 
+#### hide & show
+
+The hide and show actions are triggered when the datepicker is either hidden or displayed.
+
+```handlebars
+{{bootstrap-datepicker hide="hideAction" show="showAction"}}
+```
+
+The actions can be handled by a parent component, controller or route:
+
+```javascript
+actions: {
+  hideAction() {
+    // datepicker is hidden
+  },
+  showAction() {
+    // datepicker is shown
+  }
+}
+```
 
 
 ## Contributing
