@@ -1,53 +1,8 @@
-import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('bootstrap-datepicker', 'BootstrapDatepickerComponent', {
   integration: true
-});
-
-test('resets date when input is cleared', function (assert) {
-  assert.expect(2);
-
-  this.set('myDate', new Date());
-
-  this.render(hbs`
-    {{bootstrap-datepicker value=myDate}}
-  `);
-  
-  var datepicker = this.$('input.ember-text-field').datepicker();  
- 
-  datepicker.val('');
-  Ember.run(() => {
-    datepicker.trigger('input');
-  });
-
-  assert.equal(this.get('myDate'), null, 'value is reset');
-  assert.equal(this.$('input.ember-text-field').datepicker('getDate'), null, 'datepicker is updated');
-});
-
-test('triggers changeDate action when input field is cleared', function (assert) {
-  assert.expect(1);
-
-  this.set('myDate', new Date());
-
-  var actionIsTriggered = false;
-  this.on('myAction', () => {
-    actionIsTriggered = true;
-  });
-
-  this.render(hbs`
-    {{bootstrap-datepicker value=myDate changeDate="myAction"}}
-  `);
-
-  var datepicker = this.$('input.ember-text-field').datepicker();  
-  
-  datepicker.val('');
-  Ember.run(() => {
-    datepicker.trigger('input');
-  });
-
-  assert.ok(actionIsTriggered, 'action is triggered');
 });
 
 test('triggers specified action on focusout event', function (assert) {
@@ -67,7 +22,6 @@ test('triggers specified action on focusout event', function (assert) {
   assert.ok(actionIsTriggered, 'action is triggered on focusout');
 });
 
-
 test('triggers specified action on focusin event', function (assert) {
   assert.expect(1);
 
@@ -83,4 +37,78 @@ test('triggers specified action on focusin event', function (assert) {
   this.$('input.ember-text-field').trigger('focusin');
 
   assert.ok(actionIsTriggered, 'action is triggered on focusin');
+});
+
+test('triggers changeDate action when date selection changes', function(assert) {
+  assert.expect(1);
+
+  this.set('myDate', null);
+
+  var actionIsTriggered = false;
+  this.on('myAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.render(hbs`
+    {{bootstrap-datepicker value=myDate changeDate="myAction"}}
+  `);
+
+  var input = this.$('input.ember-text-field');
+  input.datepicker('setDate', new Date());
+
+  assert.ok(actionIsTriggered, 'action is triggered');
+});
+
+test('triggers clearDate action when date selection is cleared', function(assert) {
+  assert.expect(1);
+
+  this.set('myDate', new Date());
+
+  var actionIsTriggered = false;
+  this.on('myAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.render(hbs`
+    {{bootstrap-datepicker value=myDate clearDate="myAction"}}
+  `);
+
+  var input = this.$('input.ember-text-field');
+  input.datepicker('setDate', null);
+
+  assert.ok(actionIsTriggered, 'action is triggered');
+});
+
+test('triggers show action when date datepicker is displayed', function(assert) {
+  assert.expect(1);
+
+  var actionIsTriggered = false;
+  this.on('myAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.render(hbs`
+    {{bootstrap-datepicker show="myAction"}}
+  `);
+
+  this.$('input.ember-text-field').trigger('show');
+
+  assert.ok(actionIsTriggered, 'action is triggered');
+});
+
+test('triggers hide action when date datepicker is hidden', function(assert) {
+  assert.expect(1);
+
+  var actionIsTriggered = false;
+  this.on('myAction', () => {
+    actionIsTriggered = true;
+  });
+
+  this.render(hbs`
+    {{bootstrap-datepicker hide="myAction"}}
+  `);
+
+  this.$('input.ember-text-field').trigger('hide');
+
+  assert.ok(actionIsTriggered, 'action is triggered');
 });

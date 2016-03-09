@@ -11,7 +11,6 @@ export default Ember.Mixin.create({
   endDate: undefined,
 
   setupBootstrapDatepicker: Ember.on('didInsertElement', function() {
-    var self = this;
 
     this.$().
       datepicker({
@@ -43,21 +42,27 @@ export default Ember.Mixin.create({
         weekStart: this.get('weekStart'),
         datesDisabled: this.get('datesDisabled')
       }).
-      on('changeDate', function(event) {
-        Ember.run(function() {
-          self._didChangeDate(event);
+      on('changeDate', event => {
+        Ember.run(() => {
+          this._didChangeDate(event);
         });
       }).
-      on('input', function() {
-        if (!self.$().val()) {
-          self._applyDateValue(null);
-        }
+      on('focusout', event => {
+        this.sendAction('focus-out', this, event);
       }).
-      on('focusout', function(event) {
-        self.sendAction('focus-out', self, event);
+      on('focusin', event => {
+        this.sendAction('focus-in', this, event);
       }).
-      on('focusin', function(event) {
-        self.sendAction('focus-in', self, event);
+      on('clearDate', event => {
+        Ember.run(() => {
+          this._didChangeDate(event);
+        });
+      }).
+      on('show', () => {
+        this.sendAction('show');
+      }).
+      on('hide', () => {
+        this.sendAction('hide');
       });
 
     this._updateDatepicker();
@@ -83,12 +88,12 @@ export default Ember.Mixin.create({
     }
 
     this.set('mustUpdateInput', false);
-    this._applyDateValue(value);
-  },
-
-  _applyDateValue: function(value) {
     this.set('value', value);
-    this.sendAction('changeDate', value);
+    if (event.type === 'clearDate') {
+      this.sendAction('clearDate');
+    } else {
+      this.sendAction('changeDate', value);
+    }
   },
 
   _addObservers: Ember.on('didInsertElement', function() {
@@ -127,8 +132,7 @@ export default Ember.Mixin.create({
   }),
 
   _updateDatepicker: function() {
-    var self = this,
-        element = this.$(),
+    var element = this.$(),
         value = this.get('value'),
         dates = [];
 
@@ -147,8 +151,8 @@ export default Ember.Mixin.create({
       default:
         dates = [null];
     }
-    dates = dates.map(function(date) {
-      return (Ember.isNone(date)) ? null : self._getDateCloneWithNoTime(date);
+    dates = dates.map(date => {
+      return (Ember.isNone(date)) ? null : this._getDateCloneWithNoTime(date);
     });
 
     element.datepicker
