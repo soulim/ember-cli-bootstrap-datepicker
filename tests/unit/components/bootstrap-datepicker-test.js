@@ -42,6 +42,32 @@ test('displays date with custom format when format is set', function(assert) {
   assert.equal(this.$().val(), '31.Dec.14');
 });
 
+test('resets date when input is cleared', function(assert) {
+  this.subject({
+    value: new Date(2014, 11, 31)
+  });
+
+  assert.ok(this.$().datepicker('getDate'), 'initial value is set');
+
+  this.$().val('');
+  this.$().trigger('input');
+
+  assert.equal(this.$().datepicker('getDate'), null, 'value is reset when input is cleared');
+});
+
+test('should use customParser if provided', function(assert) {
+  assert.expect(1);
+
+  this.subject({
+    value: '2015-09-14T16:59:01+02:00',
+    customParser: function(value) {
+      return new Date(value);
+    }
+  });
+
+  assert.equal(this.$().val(), '09/14/2015');
+});
+
 test('sets dates provided by value (multidate, default multidateSeparator)', function(assert) {
   this.subject({
     value: [new Date(2015, 0, 13), new Date(2015, 0, 7), new Date(2015, 0, 15)],
