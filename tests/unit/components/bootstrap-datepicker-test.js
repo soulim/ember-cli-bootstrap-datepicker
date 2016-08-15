@@ -50,7 +50,7 @@ test('resets date when input is cleared', function(assert) {
   assert.ok(this.$().datepicker('getDate'), 'initial value is set');
 
   this.$().val('');
-  this.$().trigger('input');
+  this.$().datepicker('update');
 
   assert.equal(this.$().datepicker('getDate'), null, 'value is reset when input is cleared');
 });
