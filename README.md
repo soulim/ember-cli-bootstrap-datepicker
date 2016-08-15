@@ -224,6 +224,23 @@ actions: {
 }
 ```
 
+### changeMonth
+
+The changeMonth action is triggered when the view month changes (e.g. user click on "prev"/"next" buttons).
+Action called has new view date as first argument.
+
+```handlebars
+{{bootstrap-datepicker changeMonth="changeMonthAction"}}
+```
+
+```javascript
+actions: {
+  changeDateAction(date) {
+    // do sth with the new view date
+  }
+}
+```
+
 #### clearDate
 
 The clearDate action is triggered when the date is cleared (e.g. when the "clear" button is clicked).
