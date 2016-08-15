@@ -50,6 +50,9 @@ export default Ember.Mixin.create({
           this._didChangeDate(event);
         });
       }).
+      on('changeMonth', event => {
+        this.sendAction('changeMonth', event.date);
+      }).
       on('focusout', event => {
         this.sendAction('focus-out', this, event);
       }).
