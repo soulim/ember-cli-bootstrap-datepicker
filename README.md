@@ -76,6 +76,15 @@ Default: `false`
 {{bootstrap-datepicker value=expiresAt clearBtn=true}}
 ```
 
+#### datesDisabled
+
+Type: `Array` or `String`
+Default: `""` or `[]`
+
+```handlebars
+{{bootstrap-datepicker value=expiresAt datesDisabled="1,14"}}
+```
+
 #### daysOfWeekDisabled
 
 Type: `Array` or `String`
