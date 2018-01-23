@@ -100,10 +100,10 @@ test('updates startDate', function(assert) {
     startDate: startDate
   });
 
-  assert.equal(this.$().data('datepicker').o.startDate.getMonth(), startDate.getMonth(), 'sets initial startDate');
+  assert.equal(this.$().data('datepicker').o.startDate.getUTCMonth(), startDate.getUTCMonth(), 'sets initial startDate');
 
   component.set('startDate', newStartDate);
-  assert.equal(this.$().data('datepicker').o.startDate.getMonth(), newStartDate.getMonth(), 'updates startDate');
+  assert.equal(this.$().data('datepicker').o.startDate.getUTCMonth(), newStartDate.getUTCMonth(), 'updates startDate');
 });
 
 test('updates format', function(assert) {
