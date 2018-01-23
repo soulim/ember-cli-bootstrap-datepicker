@@ -1,6 +1,10 @@
-import Ember from 'ember';
+import { typeOf, isNone } from '@ember/utils';
+import { observer } from '@ember/object';
+import { run } from '@ember/runloop';
+import { on } from '@ember/object/evented';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   mustUpdateInput: true,
   value: null,
   // add the observed properties
@@ -13,7 +17,7 @@ export default Ember.Mixin.create({
     return value;
   },
 
-  setupBootstrapDatepicker: Ember.on('didInsertElement', function() {
+  setupBootstrapDatepicker: on('didInsertElement', function() {
 
     this.$().
       datepicker({
@@ -46,7 +50,7 @@ export default Ember.Mixin.create({
         datesDisabled: this.get('datesDisabled')
       }).
       on('changeDate', event => {
-        Ember.run(() => {
+        run(() => {
           this._didChangeDate(event);
         });
       }).
@@ -60,7 +64,7 @@ export default Ember.Mixin.create({
         this.sendAction('focus-in', this, event);
       }).
       on('clearDate', event => {
-        Ember.run(() => {
+        run(() => {
           this._didChangeDate(event);
         });
       }).
@@ -74,11 +78,11 @@ export default Ember.Mixin.create({
     this._updateDatepicker();
   }),
 
-  teardownBootstrapDatepicker: Ember.on('willDestroyElement', function() {
+  teardownBootstrapDatepicker: on('willDestroyElement', function() {
     this.$().datepicker('remove');
   }),
 
-  didChangeValue: Ember.observer('value', function() {
+  didChangeValue: observer('value', function() {
     this._updateDatepicker();
   }),
 
@@ -102,7 +106,7 @@ export default Ember.Mixin.create({
     }
   },
 
-  _addObservers: Ember.on('didInsertElement', function() {
+  _addObservers: on('didInsertElement', function() {
     this.addObserver('language', function() {
       this.$().datepicker('remove');
       this.setupBootstrapDatepicker();
@@ -150,7 +154,7 @@ export default Ember.Mixin.create({
 
     value = customParser(value);
 
-    switch (Ember.typeOf(value)) {
+    switch (typeOf(value)) {
       case 'array':
         dates = value;
         break;
@@ -161,7 +165,7 @@ export default Ember.Mixin.create({
         dates = [null];
     }
     dates = dates.map(date => {
-      return (Ember.isNone(date)) ? null : this._getDateCloneWithNoTime(date);
+      return (isNone(date)) ? null : this._getDateCloneWithNoTime(date);
     });
 
     element.datepicker
