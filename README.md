@@ -155,11 +155,11 @@ submissions). If a full code (eg “de-DE”) is supplied the picker will first 
 if not found will fallback and check for a “de” language. If an unknown language code is given, English will
 be used.
 
-When you need another language, you should import a locale file using your Brocfile.js. Just import `bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.<LANGUAGE_CODE>.js`, e.g.:
+When you need another language, you should import a locale file using your ember-cli-build.js. Just import `vendor/bootstrap-datepicker-locales/bootstrap-datepicker.<LANGUAGE_CODE>.js`, e.g.:
 
 ```javascript
-// Brocfile.js
-app.import('bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.de.js');
+// ember-cli-build.js
+app.import('vendor/bootstrap-datepicker-locales/bootstrap-datepicker.de.js');
 ```
 
 Type: `String`

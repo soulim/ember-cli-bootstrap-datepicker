@@ -5,6 +5,4 @@
 
 set -o errexit
 
-npm install -g bower
 npm install
-bower install

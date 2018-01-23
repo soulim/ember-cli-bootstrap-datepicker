@@ -221,8 +221,8 @@ ember generate bootstrap-datepicker</pre>
         Type: <code>String</code><br>
         Default: <code>'en'</code>
       </p>
-      <p>Please note, to make German language available I've added one line into <code>Brocfile.js</code>:</p>
-      <pre><code>app.import(app.bowerDirectory + '/bootstrap-datepicker/dist/locales/bootstrap-datepicker.de.min.js');</code></pre>
+      <p>Please note, to make German language available I've added one line into <code>ember-cli-build.js</code>:</p>
+      <pre><code>app.import('vendor/bootstrap-datepicker-locales/bootstrap-datepicker.de.min.js');</code></pre>
 
       <p>Months are translated in German, date format is changed, and weeks start from Monday now. So it's pretty convenient :)</p>
     </div>

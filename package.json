@@ -24,9 +24,13 @@
     "test": "ember try:each"
   },
   "dependencies": {
+    "bootstrap-datepicker": "^1.7.1",
+    "broccoli-funnel": "^2.0.1",
+    "broccoli-merge-trees": "^2.0.0",
     "ember-cli-babel": "^6.6.0"
   },
   "devDependencies": {
+    "bootstrap": "~3.3.7",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.18.0",
