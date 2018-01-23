@@ -79,7 +79,7 @@ export default Mixin.create({
   }),
 
   teardownBootstrapDatepicker: on('willDestroyElement', function() {
-    this.$().datepicker('remove');
+    this.$().datepicker('destroy');
   }),
 
   didChangeValue: observer('value', function() {
@@ -108,7 +108,7 @@ export default Mixin.create({
 
   _addObservers: on('didInsertElement', function() {
     this.addObserver('language', function() {
-      this.$().datepicker('remove');
+      this.$().datepicker('destroy');
       this.setupBootstrapDatepicker();
     });
 
