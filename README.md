@@ -363,40 +363,19 @@ actions: {
 }
 ```
 
-=======
-* `git clone <repository-url>` this repository
-* `cd my-addon`
-* `npm install`
->>>>>>> 9b47569... message
-
 ## Contributing
 
-<<<<<<< HEAD
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
-=======
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
->>>>>>> 9b47569... message
 
 ## Credits
 
-<<<<<<< HEAD
 The add-on is based on [bootstrap-datepicker](https://github.com/eternicode/bootstrap-datepicker).
-=======
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
->>>>>>> 9b47569... message
 
 
 ## License
 
-<<<<<<< HEAD
 [MIT License](https://github.com/soulim/ember-cli-bootstrap-datepicker/blob/master/LICENSE.md)
-=======
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
->>>>>>> 9b47569... message
