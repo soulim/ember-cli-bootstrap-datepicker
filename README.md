@@ -12,24 +12,9 @@ It doesn't have any external dependecy except bootstrap-datepicker.
 
 ## Installation
 
-If you are using Ember CLI 0.2.3 or higher, just run within your project directory:
-
-```bash
-ember install ember-cli-bootstrap-datepicker
-```
-
-If your Ember CLI version is greater than 0.1.5 and less than 0.2.3, run the following within your project directory:
-
-```bash
-ember install:addon ember-cli-bootstrap-datepicker
-```
-
-When your Ember CLI version is below 0.1.5, please run within your project directory:
-
-```bash
-npm install --save-dev ember-cli-bootstrap-datepicker
-ember generate bootstrap-datepicker
-```
+* `git clone <repository-url>` this repository
+* `cd new-addon`
+* `npm install`
 
 ## Usage
 
@@ -45,7 +30,7 @@ Use separate component for inline mode:
 {{bootstrap-datepicker-inline value=expiresAt}}
 ```
 
-The component supports many options of the bootstrap-datepicker library. Feel free to take a look into 
+The component supports many options of the bootstrap-datepicker library. Feel free to take a look into
 [bootstrap-datepicker docs on Read the Docs](https://bootstrap-datepicker.readthedocs.io/en/latest/) for more
 in-depth information.
 
@@ -77,7 +62,7 @@ Default: `false`
 
 #### clearBtn
 
-If true, displays a “Clear” button at the bottom of the datepicker to clear the input value. If “autoclose” is also 
+If true, displays a “Clear” button at the bottom of the datepicker to clear the input value. If “autoclose” is also
 set to true, this button will also close the datepicker.
 
 Type: `Boolean`
@@ -100,7 +85,7 @@ Default: `""` or `[]`
 
 #### daysOfWeekDisabled
 
-Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). Multiple values should be 
+Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). Multiple values should be
 comma-separated. Example: disable weekends: `'06'` or `'0,6'` or `[0,6]`.
 
 Type: `Array` or `String`
@@ -123,8 +108,8 @@ Default: `Infinity` (end of time)
 
 #### forceParse
 
-Whether or not to force parsing of the input value when the picker is closed. That is, when an invalid date 
-is left in the input field by the user, the picker will forcibly parse that value, and set the input’s value 
+Whether or not to force parsing of the input value when the picker is closed. That is, when an invalid date
+is left in the input field by the user, the picker will forcibly parse that value, and set the input’s value
 to the new, valid date, conforming to the given format.
 
 Type: `Boolean`
@@ -164,17 +149,17 @@ Default: `true`
 
 #### language
 
-The IETF code (eg “en” for English, “pt-BR” for Brazilian Portuguese) of the language to use for month and day 
-names. These will also be used as the input’s value (and subsequently sent to the server in the case of form 
-submissions). If a full code (eg “de-DE”) is supplied the picker will first check for an “de-DE” language and 
-if not found will fallback and check for a “de” language. If an unknown language code is given, English will 
+The IETF code (eg “en” for English, “pt-BR” for Brazilian Portuguese) of the language to use for month and day
+names. These will also be used as the input’s value (and subsequently sent to the server in the case of form
+submissions). If a full code (eg “de-DE”) is supplied the picker will first check for an “de-DE” language and
+if not found will fallback and check for a “de” language. If an unknown language code is given, English will
 be used.
 
-When you need another language, you should import a locale file using your Brocfile.js. Just import `bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.<LANGUAGE_CODE>.js`, e.g.:
+When you need another language, you should import a locale file using your ember-cli-build.js. Just import `vendor/bootstrap-datepicker-locales/bootstrap-datepicker.<LANGUAGE_CODE>.js`, e.g.:
 
 ```javascript
-// Brocfile.js
-app.import('bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.de.js');
+// ember-cli-build.js
+app.import('vendor/bootstrap-datepicker-locales/bootstrap-datepicker.de.js');
 ```
 
 Type: `String`
@@ -187,9 +172,9 @@ Default: `'en'`
 
 #### minViewMode
 
-Set a minimum limit for the view mode. Accepts: “days” or 0, “months” or 1, “years” or 2, “decades” or 3, and 
-“centuries” or 4. Gives the ability to pick only a month, a year or a decade. The day is set to the 1st for “months”, 
-and the month is set to January for “years”, the year is set to the first year from the decade for “decades”, and 
+Set a minimum limit for the view mode. Accepts: “days” or 0, “months” or 1, “years” or 2, “decades” or 3, and
+“centuries” or 4. Gives the ability to pick only a month, a year or a decade. The day is set to the 1st for “months”,
+and the month is set to January for “years”, the year is set to the first year from the decade for “decades”, and
 the year is set to the first from the millennium for “centuries”.
 
 Type: `Number` or `String`
@@ -201,15 +186,15 @@ Default: `0` or `'days'`
 
 #### orientation
 
-A space-separated string consisting of one or two of “left” or “right”, “top” or “bottom”, and “auto” (may be 
-omitted); for example, “top left”, “bottom” (horizontal orientation will default to “auto”), “right” (vertical 
+A space-separated string consisting of one or two of “left” or “right”, “top” or “bottom”, and “auto” (may be
+omitted); for example, “top left”, “bottom” (horizontal orientation will default to “auto”), “right” (vertical
 orientation will default to “auto”), “auto top”. Allows for fixed placement of the picker popup.
 
-“orientation” refers to the location of the picker popup’s “anchor”; you can also think of it as the location of 
+“orientation” refers to the location of the picker popup’s “anchor”; you can also think of it as the location of
 the trigger element (input, component, etc) relative to the picker.
 
-“auto” triggers “smart orientation” of the picker. Horizontal orientation will default to “left” and left offset 
-will be tweaked to keep the picker inside the browser viewport; vertical orientation will simply choose “top” or 
+“auto” triggers “smart orientation” of the picker. Horizontal orientation will default to “left” and left offset
+will be tweaked to keep the picker inside the browser viewport; vertical orientation will simply choose “top” or
 “bottom”, whichever will show more of the picker in the viewport.
 
 Type: `String`
@@ -232,8 +217,8 @@ Default: `-Infinity` (beginning of time)
 
 #### startView
 
-The view that the datepicker should show when it is opened. Accepts values of 0 or “month” for month view (the 
-default), 1 or “year” for the 12-month overview, 2 or “decade” for the 10-year overview, 3 or “century” for the 
+The view that the datepicker should show when it is opened. Accepts values of 0 or “month” for month view (the
+default), 1 or “year” for the 12-month overview, 2 or “decade” for the 10-year overview, 3 or “century” for the
 10-decade overview, and 4 or “millennium” for the 10-century overview. Useful for date-of-birth datepickers.
 
 Type: `Number` or `String`
@@ -245,8 +230,8 @@ Default: `0` or `'month'`
 
 #### todayBtn
 
-If true or “linked”, displays a “Today” button at the bottom of the datepicker to select the current date. 
-If true, the “Today” button will only move the current date into view; if “linked”, the current date will 
+If true or “linked”, displays a “Today” button at the bottom of the datepicker to select the current date.
+If true, the “Today” button will only move the current date into view; if “linked”, the current date will
 also be selected.
 
 Type: `Boolean` or `String`
@@ -377,7 +362,6 @@ actions: {
   }
 }
 ```
-
 
 ## Contributing
 

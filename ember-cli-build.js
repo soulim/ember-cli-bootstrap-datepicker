@@ -1,17 +1,19 @@
-/* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-addon');
+'use strict';
+
+const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const path = require('path');
 
 module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
+  let app = new EmberAddon(defaults, {
     // Add options here
   });
 
-  app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');
-  app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css.map', {
+  app.import(path.join('node_modules/bootstrap/dist/css/bootstrap.css'));
+  app.import(path.join('node_modules/bootstrap/dist/css/bootstrap.css.map'), {
     destDir: 'assets'
   });
 
-  app.import(app.bowerDirectory + '/bootstrap-datepicker/dist/locales/bootstrap-datepicker.de.min.js');
+  app.import(path.join('vendor/bootstrap-datepicker-locales/bootstrap-datepicker.de.min.js'));
 
   return app.toTree();
 };

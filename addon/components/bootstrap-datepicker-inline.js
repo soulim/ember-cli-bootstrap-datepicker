@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import DatepickerSupport from 'ember-cli-bootstrap-datepicker/components/datepicker-support';
 
-export default Ember.Component.extend(DatepickerSupport, {
+export default Component.extend(DatepickerSupport, {
   tagName: 'div'
 });
