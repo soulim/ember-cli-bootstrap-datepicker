@@ -21,11 +21,19 @@ module.exports = {
     let cssDir = path.resolve(jsDir, '..', 'css');
     let localesDir = path.resolve(jsDir, '..', 'locales');
 
-    return mergeTrees([
-      vendorTree,
+    // If there's no vendor directory (it apparently get stripped if empty when
+    // publishin to npm), the vendorTree is undefined and mergeTrees() gets
+    // grumpy if one of the trees passed in isn't a broccoli node.
+    let trees = [];
+    if (vendorTree) {
+      trees.push(vendorTree);
+    }
+    trees.push(
       new Funnel(jsDir, { files: [ 'bootstrap-datepicker.js' ] }),
       new Funnel(cssDir, { files: [ 'bootstrap-datepicker.css' ] }),
       new Funnel(localesDir, { destDir: 'bootstrap-datepicker-locales' })
-    ]);
+    );
+
+    return mergeTrees(trees);
   }
 };
